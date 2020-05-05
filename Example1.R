@@ -12,7 +12,7 @@ tru.y.sig = 2 #within-patient deviance
 b0 = rnorm(J,tru.b.mu[1],tru.b.sig[1])
 b1 = rnorm(J,tru.b.mu[2],tru.b.sig[2])
 b = cbind(b0,b1)
-tru.p = c(tru.b.mu,tru.b.sig,tru.y.sig,b0,b1)
+trup = c(tru.b.mu,tru.b.sig,tru.y.sig,b0,b1)
 set.seed(NULL) #undo seed setting
 
 J = 30 #number of patients
@@ -22,11 +22,11 @@ nobv = 5 #number of observations per patient
 designs = c("FRN","BAN","BBAN")
 for (i in 1:3){
   if (i==1){
-    out <- FRN_run(J, nperiod, nobv, b, true.p)} #Fixed randomization design
+    out <- FRN_run(J, nperiod, nobv, b, trup)} #Fixed randomization design
   if (i==2){ 
-    out <- BAN_run(J, nperiod, nobv, b, true.p)} #Bayesian bandit adaptive design
+    out <- BAN_run(J, nperiod, nobv, b, trup)} #Bayesian bandit adaptive design
   if (i==3){
-    out <- B_BAN_run(J, nperiod, nobv, b, true.p)} #Batch updated Bayesian bandit adaptive design
+    out <- B_BAN_run(J, nperiod, nobv, b, trup)} #Batch updated Bayesian bandit adaptive design
 
   allocprob = out[1] #allocation probabilities through the adaptive periods
   post_samples = out[2] #final posterior draws
