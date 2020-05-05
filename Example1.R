@@ -1,3 +1,4 @@
+######Run for Example 1 simulations######
 source("BAN_run.R")
 source("B_BAN_run.R")
 source("FRN_run.R")
