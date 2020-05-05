@@ -25,11 +25,11 @@ nobv = 5 #number of observations per patient
 designs = c("FRN","BAN","BBAN")
 for (i in 1:3){
   if (i==1){
-    out <- FRN_run(J, nperiod, nobv, b, truep)} #Fixed randomization design
+    out <- FRN_run(J, nperiod, nobv, b, true.p)} #Fixed randomization design
   if (i==2){ 
-    out <- BAN_run(J, nperiod, nobv, b, truep)} #Bayesian bandit adaptive design
+    out <- BAN_run(J, nperiod, nobv, b, true.p)} #Bayesian bandit adaptive design
   if (i==3){
-    out <- B_BAN_run(J, nperiod, nobv, b, truep)} #Batch updated Bayesian bandit adaptive design
+    out <- B_BAN_run(J, nperiod, nobv, b, true.p)} #Batch updated Bayesian bandit adaptive design
   
   allocprob = out[1] #allocation probabilities through the adaptive periods
   post_samples = out[2] #final posterior draws
