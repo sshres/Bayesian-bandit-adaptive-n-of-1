@@ -1,6 +1,7 @@
 #####Type 1 error simulations####
 
-source("BAN_run.R")
+source("AGGBAN_run.R")
+source("INDBAN_run.R")
 source("B_BAN_run.R")
 source("FRN_run.R")
 
@@ -23,18 +24,20 @@ J = 30 #number of patients
 nperiod = 6 #number of periods (two per cycle)
 nobv = 1 #number of observations per patient
 
-designs = c("FRN","BAN","BBAN")
+designs = c("FRN","AGGBAN","INDBAN", "BBAN")
 sims = 1000
 h0 = matrix(0,length(designs),sims)
 
 for (j in 1:sims){
   
-  for (i in 1:3){
+  for (i in 1:4){
     if (i==1){
       out <- FRN_run(J, nperiod, nobv, b, trup)} #Fixed randomization design
     if (i==2){ 
-      out <- BAN_run(J, nperiod, nobv, b, trup)} #Bayesian bandit adaptive design
-    if (i==3){
+      out <- AGGBAN_run(J, nperiod, nobv, b, trup)} #Aggregated Bayesian bandit adaptive design
+    if (i==3){ 
+      out <- INDBAN_run(J, nperiod, nobv, b, trup)} #Individual Bayesian bandit adaptive design
+    if (i==4){
       out <- B_BAN_run(J, nperiod, nobv, b, trup)} #Batch updated Bayesian bandit adaptive design
     
     allocprob = out[1] #allocation probabilities through the adaptive periods

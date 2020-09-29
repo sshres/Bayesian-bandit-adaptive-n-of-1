@@ -30,7 +30,7 @@ FRN_run <- function(J, nperiod, nobv, b, truep){
   
   current_data = list(J=J,N=N,y=y,t=t,id=id)
   
-  hout <- stan(file='hmodel_c.stan', 
+  hout <- stan(file='model_agg.stan', 
                   data = current_data,
                   chains = 4,             # number of Markov chains
                   warmup = 1000,          # number of warmup iterations per chain
